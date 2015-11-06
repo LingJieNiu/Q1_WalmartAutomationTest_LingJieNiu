@@ -18,7 +18,8 @@ import org.junit.Test;
 import org.openqa.selenium.ElementNotVisibleException;
 
 public class AutomationTest {
-	
+	String ItemName="";
+	String itemNameInCart="";
 	private WebDriver driver;
 	 // private String baseUrl;
 	//  private boolean acceptNextAlert = true;
@@ -60,7 +61,7 @@ public class AutomationTest {
 		
 		 
 		//  WebElement searchItems = driver.findElement(By.xpath("//*[@id='search']"));
-		  String ItemName="";  
+		 // String ItemName="";  
 		    for (int i = 0; i < 5; i++) {
 		    	
 		    	WebElement searchItems = driver.findElement(By.xpath("//*[@id='search']"));
@@ -133,56 +134,20 @@ public class AutomationTest {
 				}
 				
 				
-				String itemNameInCart="";
+			//	String itemNameInCart="";
 				
 				if (i == 1) {
-					driver.findElement(By.xpath("//*[@id='WMItemAddToCartBtn']")).click();
-				//add to cart
+					AddToCart();
+					driver.findElement(By.xpath("//*[@id='CartRemItemBtn']")).click();//remove
+				//	HomePage();
 					
-					driver.findElement(By.xpath("//*[@id='PACViewCartBtn']")).click();
-					//View cart
-					
-					itemNameInCart=driver.findElement(By.xpath("//div[@class='cart-item-name js-product-title']/a[@id='CartItemInfo']")).getText();
-					//WebElement getoneItem1=driver.findElement(By.xpath("//*[@id='CartItemInfo']/span"));
-					
-					//get Item name in the cart
-					
-					System.out.println("the sock name 1:"+ItemName);
-					System.out.println("the sock name 2:"+itemNameInCart);
-					assertEquals(ItemName, itemNameInCart);
-					driver.findElement(By.xpath("//*[@id='CartRemItemBtn']")).click();
-					//remove
-					HomePage();
-					//continue shopping
 				}else if (i == 3) {
-					driver.findElement(By.xpath("//*[@id='WMItemAddToCartBtn']")).click();
-					//add to cart
-						
-						driver.findElement(By.xpath("//*[@id='PACViewCartBtn']")).click();
-						
-						//View cart
-						itemNameInCart=driver.findElement(By.xpath("//div[@class='cart-item-name js-product-title']/a[@id='CartItemInfo']")).getText();
-						//get Item name in the cart
-						assertEquals(ItemName, itemNameInCart);
-						driver.findElement(By.xpath("//*[@id='CartRemItemBtn']")).click();
-						//remove
-					//	driver.findElement(By.xpath("//*[@id='PACContShopBtn']")).click();
-						
-						HomePage();
-						//continue shopping
+					AddToCart();
+					driver.findElement(By.xpath("//*[@id='CartRemItemBtn']")).click();//remove
+				//	HomePage();
 				}else if (i == 4){
-					driver.findElement(By.xpath("//*[@id='WMItemAddToCartBtn']")).click();
-					//add to cart
-						
-						driver.findElement(By.xpath("//*[@id='PACViewCartBtn']")).click();
-						
-						//View cart
-						itemNameInCart=driver.findElement(By.xpath("//div[@class='cart-item-name js-product-title']/a[@id='CartItemInfo']")).getText();
-						//get Item name in the cart
-						assertEquals(ItemName, itemNameInCart);
-						//driver.findElement(By.xpath("//*[@id='CartRemItemBtn']")).click();
-						//remove
-					//	driver.findElement(By.xpath("//*[@id='PACContShopBtn']")).click();
+					
+					AddToCart();
 						String item=driver.findElement(By.xpath("//*[@id='spa-layout']/div/div/div[1]/div/div[3]/div[2]/div/div/div[4]/div/div[1]/div/div/div/div[1]/div/div")).getText();
 						
 						assertEquals("1", item);
@@ -198,15 +163,34 @@ public class AutomationTest {
 		    }
 	  }
 	  
-	  
+	  public void AddToCart() throws InterruptedException{
+		  
+			driver.findElement(By.xpath("//*[@id='WMItemAddToCartBtn']")).click();
+			//add to cart
+				
+				driver.findElement(By.xpath("//*[@id='PACViewCartBtn']")).click();
+				//View cart
+				
+				itemNameInCart=driver.findElement(By.xpath("//div[@class='cart-item-name js-product-title']/a[@id='CartItemInfo']")).getText();
+				//WebElement getoneItem1=driver.findElement(By.xpath("//*[@id='CartItemInfo']/span"));
+				
+				//get Item name in the cart
+				
+				
+				assertEquals(ItemName, itemNameInCart);
+				//driver.findElement(By.xpath("//*[@id='CartRemItemBtn']")).click();
+				//remove
+				
+				//continue shopping
+		  
+		  
+		  
+		  
+	  }
 	 
 	  
 	  public void HomePage() throws InterruptedException {
-			//go to the homePage
-			// driver.findElement(By.xpath("//*[@id='top']/div[3]/div/div/div/div/div[2]/a[1]")).click();
-			// driver.findElement(By.className("logo js-logo hide-content-max-l"));
-			// <a href="/" class="logo js-logo hide-content-max-l"> <span class="visuallyhidden">Walmart. Save Money. Live Better.</span> </a>
-			//Thread.sleep(2000);
+			
 		  
 		  driver.navigate().to("https://www.walmart.com");
 		  Thread.sleep(2000);
