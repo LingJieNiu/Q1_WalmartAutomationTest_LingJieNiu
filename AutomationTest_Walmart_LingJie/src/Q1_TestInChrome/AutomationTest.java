@@ -41,7 +41,7 @@ public class AutomationTest {
 		    driver.findElement(By.id("login-username")).clear();
 		    driver.findElement(By.id("login-username")).sendKeys("niulingjie@foxmail.com");
 		    driver.findElement(By.id("login-password")).clear();
-		    driver.findElement(By.id("login-password")).sendKeys("181818fuzhou");
+		    driver.findElement(By.id("login-password")).sendKeys("walmarttest");
 		    driver.findElement(By.xpath("(//button[@type='submit'])[3]")).click();
 		  
 		
