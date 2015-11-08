@@ -47,13 +47,13 @@ public class AutomationTest {
 		
 		    HomePage();
 		  
-		  
+		 
 	  }
 	  
 	  public void PerformSearch() throws InterruptedException{
 		
 		 
-		
+		// Start the search
 		    for (int i = 0; i < 5; i++) {
 		    	
 		    	WebElement searchItems = driver.findElement(By.xpath("//*[@id='search']"));
@@ -114,7 +114,7 @@ public class AutomationTest {
 						//choose a color;
 						
 						
-						//driver.findElement(By.xpath("/html/body/div[2]/section/section[4]/div/div[2]/div[1]/div[5]/div[2]/div/div[2]/div/div[2]/div/div[3]/div/div[2]/div/div/div/button")).click();
+						
 						Thread.sleep(2000);
 						driver.findElement(By.xpath("//section[@class='body']/section[@class='center']/div/div[2]/div[1]/div[5]/div[2]/div/div[2]/div/div[2]/div/div[3]/div/div[2]/div/div/div/button/i")).click();
 						//click small button to close extra choice
@@ -146,7 +146,7 @@ public class AutomationTest {
 						//continue shopping
 				}
 				
-				
+			
 				
 				
 		    }
