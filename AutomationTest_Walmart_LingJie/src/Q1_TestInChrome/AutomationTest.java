@@ -47,7 +47,7 @@ public class AutomationTest {
 		
 		    HomePage();
 		  
-		 
+		
 	  }
 	  
 	  public void PerformSearch() throws InterruptedException{
