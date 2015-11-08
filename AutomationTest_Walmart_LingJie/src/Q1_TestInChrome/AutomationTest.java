@@ -23,9 +23,9 @@ public class AutomationTest {
 	  public void setUp() throws Exception {
 		  System.setProperty("webdriver.chrome.driver",
 					
-					"D:/SoftwareTest/Webdrive/chromedriver_win32/chromedriver.exe");
+					"Webdriver/chromedriver.exe");
 		 
-		  
+		//  D:/SoftwareTest/Webdrive/chromedriver_win32/chromedriver.exe
 	    driver = new ChromeDriver();
 	 
 	    driver.get("http://www.walmart.com/");
@@ -177,7 +177,7 @@ public class AutomationTest {
 			
 		  
 		  driver.navigate().to("https://www.walmart.com");
-		  Thread.sleep(2000);
+		
 		  
 		}
 	  
