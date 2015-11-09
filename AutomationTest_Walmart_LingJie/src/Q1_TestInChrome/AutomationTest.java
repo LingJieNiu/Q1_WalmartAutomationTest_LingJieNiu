@@ -4,21 +4,29 @@ package Q1_TestInChrome;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import org.junit.Before;
 
 
 public class AutomationTest {
+	private
 	String ItemName="";
 	String itemNameInCart="";
-	private WebDriver driver;
-	
+	WebDriver driver;
+	ArrayList<String> ItermList=new ArrayList<String>();
+	FileReader fr ;
+	BufferedReader br ;
+	String searchitems;
 	  @Before
 	  public void setUp() throws Exception {
 		  System.setProperty("webdriver.chrome.driver",
@@ -50,17 +58,18 @@ public class AutomationTest {
 		
 	  }
 	  
-	  public void PerformSearch() throws InterruptedException{
-		
+	  public void PerformSearch() throws InterruptedException, IOException{
+		  ReadFile();
 		 
 		// Start the search
-		    for (int i = 0; i < 5; i++) {
+		    for (int i = 0; i < ItermList.size(); i++) {
 		    	
 		    	WebElement searchItems = driver.findElement(By.xpath("//*[@id='search']"));
 		    	WebElement getoneItem = null;
 				switch(i) {
 					case 0:
-						searchItems.sendKeys("tv");
+						//String item=ItermList.get(0);
+						searchItems.sendKeys(ItermList.get(0));//tv
 						driver.findElement(By.cssSelector("button.searchbar-submit.js-searchbar-submit")).click();
 						Thread.sleep(2000);
 						getoneItem=driver.findElement(By.xpath("//*[@id='tile-container']/div[1]/div/div/h4/a"));
@@ -69,7 +78,8 @@ public class AutomationTest {
 						Thread.sleep(2000);
 						break;
 					case 1:
-						searchItems.sendKeys("socks");
+						//String item=ItermList.get(1);
+						searchItems.sendKeys(ItermList.get(1));//socks
 						driver.findElement(By.cssSelector("button.searchbar-submit.js-searchbar-submit")).click();
 						Thread.sleep(2000);
 						getoneItem=driver.findElement(By.xpath("//*[@id='tile-container']/ul/li[1]/div/a[2]"));
@@ -78,7 +88,8 @@ public class AutomationTest {
 						Thread.sleep(2000);
 						break;
 					case 2:
-						searchItems.sendKeys("dvd");
+						//String item=ItermList.get(2);
+						searchItems.sendKeys(ItermList.get(2));//dvd
 						driver.findElement(By.xpath("//*[@id='top']/div[3]/div/div/div/div/div[3]/form/div/div[3]/button")).click();
 						Thread.sleep(2000);
 						getoneItem=driver.findElement(By.xpath("//*[@id='tile-container']/div[2]/div/div/h4/a"));
@@ -89,7 +100,8 @@ public class AutomationTest {
 						Thread.sleep(2000);
 						break;
 					case 3:
-						searchItems.sendKeys("toys");
+						//String item=ItermList.get(3);
+						searchItems.sendKeys(ItermList.get(3));//toys
 						driver.findElement(By.xpath("//*[@id='top']/div[3]/div/div/div/div/div[3]/form/div/div[3]/button")).click();
 						Thread.sleep(2000);
 						
@@ -100,7 +112,8 @@ public class AutomationTest {
 						Thread.sleep(2000);
 						break;
 					case 4:
-						searchItems.sendKeys("iphone");
+						//String item=ItermList.get(4);
+						searchItems.sendKeys(ItermList.get(4));//iphone
 						driver.findElement(By.xpath("//*[@id='top']/div[3]/div/div/div/div/div[3]/form/div/div[3]/button")).click();
 						
 						getoneItem=driver.findElement(By.xpath("//*[@id='tile-container']/div[1]/div/div/h4/a"));
@@ -180,6 +193,30 @@ public class AutomationTest {
 		
 		  
 		}
+	  
+	  
+	  public void ReadFile() throws IOException{
+			
+			File input=new File("src/SearchItems.txt");
+			fr=new FileReader(input);
+			br=new BufferedReader(fr);
+			while((searchitems=br.readLine())!=null){
+				String[]arr=searchitems.split(",");
+				for(String i:arr){
+					
+					ItermList.add(i);
+				}
+				
+			}
+		/*	
+			for(String i:ItermList){
+				
+				System.out.println(i);
+				
+			}
+			*/
+		}
+	  
 	  
 	  
 	  
