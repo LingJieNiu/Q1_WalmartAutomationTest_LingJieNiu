@@ -68,7 +68,7 @@ public class AutomationTest {
 		    	
 		    	WebElement searchItems = driver.findElement(By.xpath("//*[@id='search']"));
 		    	 WebElement choiceOne = null;
-				switch(i=4) {
+				switch(i) {
 					case 0:
 						searchItems.sendKeys(ItermList.get(i));//tv 
 						driver.findElement(By.cssSelector("button.searchbar-submit.js-searchbar-submit")).click(); 
