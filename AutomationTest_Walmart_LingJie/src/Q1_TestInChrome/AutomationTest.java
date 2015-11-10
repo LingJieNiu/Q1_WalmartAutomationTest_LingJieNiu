@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -24,6 +25,7 @@ public class AutomationTest {
 	String itemNameInCart="";
 	WebDriver driver;
 	ArrayList<String> ItermList=new ArrayList<String>();
+	List<WebElement> SearchItermList=new ArrayList<WebElement>();
 	FileReader fr ;
 	BufferedReader br ;
 	String searchitems;
@@ -33,7 +35,7 @@ public class AutomationTest {
 					
 					"Webdriver/chromedriver.exe");
 		 
-		//  D:/SoftwareTest/Webdrive/chromedriver_win32/chromedriver.exe
+		
 	    driver = new ChromeDriver();
 	 
 	    driver.get("http://www.walmart.com/");
@@ -65,65 +67,91 @@ public class AutomationTest {
 		    for (int i = 0; i < ItermList.size(); i++) {
 		    	
 		    	WebElement searchItems = driver.findElement(By.xpath("//*[@id='search']"));
-		    	WebElement getoneItem = null;
-				switch(i) {
+		    	 WebElement choiceOne = null;
+				switch(i=4) {
 					case 0:
-						//String item=ItermList.get(0);
-						searchItems.sendKeys(ItermList.get(0));//tv
-						driver.findElement(By.cssSelector("button.searchbar-submit.js-searchbar-submit")).click();
-						Thread.sleep(2000);
-						getoneItem=driver.findElement(By.xpath("//*[@id='tile-container']/div[1]/div/div/h4/a"));
-						ItemName=getoneItem.getText();//get the item name;
-						getoneItem.click();
-						Thread.sleep(2000);
+						searchItems.sendKeys(ItermList.get(i));//tv 
+						driver.findElement(By.cssSelector("button.searchbar-submit.js-searchbar-submit")).click(); 
+						Thread.sleep(2000); 
+
+					
+						SearchItermList=driver.findElements(By.xpath("//h4/a"));
+						//put all products link to SearchItermList
+					
+					    choiceOne=SearchItermList.get(2);//choice the third product
+						
+						choiceOne.click();
+						ItemName=driver.findElement(By.xpath("//h1[@class='js-product-heading heading-b product-name product-heading padding-ends']")).getText();
+						//get the item name
+						Thread.sleep(2000); 
+			
 						break;
 					case 1:
-						//String item=ItermList.get(1);
-						searchItems.sendKeys(ItermList.get(1));//socks
-						driver.findElement(By.cssSelector("button.searchbar-submit.js-searchbar-submit")).click();
-						Thread.sleep(2000);
-						getoneItem=driver.findElement(By.xpath("//*[@id='tile-container']/ul/li[1]/div/a[2]"));
-						ItemName=getoneItem.getText();//get the item name;
-						getoneItem.click();
-						Thread.sleep(2000);
+						
+						searchItems.sendKeys(ItermList.get(i));//socks 
+						driver.findElement(By.cssSelector("button.searchbar-submit.js-searchbar-submit")).click(); 
+						Thread.sleep(2000); 
+						SearchItermList=driver.findElements(By.xpath("//li[@class='tile-grid-unit-wrapper']//a[@class='js-product-title']"));
+						//put all products link to SearchItermList
+						
+					    choiceOne=SearchItermList.get(0);//choice the first product
+						
+						choiceOne.click();
+						ItemName=driver.findElement(By.xpath("//h1[@class='js-product-heading heading-b product-name product-heading padding-ends']")).getText();
+						//get the item name
+						
+					
 						break;
 					case 2:
-						//String item=ItermList.get(2);
-						searchItems.sendKeys(ItermList.get(2));//dvd
-						driver.findElement(By.xpath("//*[@id='top']/div[3]/div/div/div/div/div[3]/form/div/div[3]/button")).click();
-						Thread.sleep(2000);
-						getoneItem=driver.findElement(By.xpath("//*[@id='tile-container']/div[2]/div/div/h4/a"));
+						searchItems.sendKeys(ItermList.get(i));//tv 
+						driver.findElement(By.cssSelector("button.searchbar-submit.js-searchbar-submit")).click(); 
+						Thread.sleep(2000); 
+						SearchItermList=driver.findElements(By.xpath("//h4/a"));//dvd
+						//put all products link to SearchItermList
 						
+					    choiceOne=SearchItermList.get(2);//choice the third product
 						
-						ItemName=getoneItem.getText();//get the item name;
-						getoneItem.click();
-						Thread.sleep(2000);
+						choiceOne.click();
+						ItemName=driver.findElement(By.xpath("//h1[@class='js-product-heading heading-b product-name product-heading padding-ends']")).getText();
+						//get item name
+						
+				
 						break;
 					case 3:
-						//String item=ItermList.get(3);
-						searchItems.sendKeys(ItermList.get(3));//toys
-						driver.findElement(By.xpath("//*[@id='top']/div[3]/div/div/div/div/div[3]/form/div/div[3]/button")).click();
-						Thread.sleep(2000);
+						searchItems.sendKeys(ItermList.get(i));//toys 
+						driver.findElement(By.cssSelector("button.searchbar-submit.js-searchbar-submit")).click(); 
+						Thread.sleep(2000); 
+						SearchItermList=driver.findElements(By.xpath("//a[@class='Tile-linkOverlay js-tile-link-overlay']"));
+						//put all products link to SearchItermList
 						
-						getoneItem=driver.findElement(By.xpath("//*[@id='sponsored-container-middle-2']/div/div[2]/ol/div/div/li[1]/div/div[2]/a/span"));
+					    choiceOne=SearchItermList.get(2);//choice the third product
+					    choiceOne.click();
+					    ItemName=driver.findElement(By.xpath("//h1[@class='js-product-heading heading-b product-name product-heading padding-ends']")).getText();
+					  //get the item name;
+					    
+				
 						
-						ItemName=getoneItem.getText();//get the item name;
-						getoneItem.click();
-						Thread.sleep(2000);
 						break;
 					case 4:
-						//String item=ItermList.get(4);
-						searchItems.sendKeys(ItermList.get(4));//iphone
-						driver.findElement(By.xpath("//*[@id='top']/div[3]/div/div/div/div/div[3]/form/div/div[3]/button")).click();
+						searchItems.sendKeys(ItermList.get(i));//iphone 
+						driver.findElement(By.cssSelector("button.searchbar-submit.js-searchbar-submit")).click(); 
+						Thread.sleep(2000); 
+						SearchItermList=driver.findElements(By.xpath("//h4/a"));
+						//put all products link to SearchItermList
 						
-						getoneItem=driver.findElement(By.xpath("//*[@id='tile-container']/div[1]/div/div/h4/a"));
-						ItemName=getoneItem.getText();//get the item name;
-						getoneItem.click();
-						 Thread.sleep(2000);
+					    choiceOne=SearchItermList.get(3);//choice the fourth product
 						
+						choiceOne.click();
+						ItemName=driver.findElement(By.xpath("//h1[@class='js-product-heading heading-b product-name product-heading padding-ends']")).getText();
+						//get the item name
+
+					
 						
+						List<WebElement> ColorList=new ArrayList<WebElement>();
 						
-						 driver.findElement(By.xpath("//section[@class='body']/section[@class='center']/div/div[2]/div[1]/div[5]/div[2]/div/div[2]/div/div[2]/div/div[1]/div/div/div/span[1]/label/span")).click();
+						ColorList=driver.findElements(By.xpath("//span[@class='js-variant-swatch-container variant-swatch-container']/label/span"));
+						
+						ColorList.get(0).click();
 						//choose a color;
 						
 						
@@ -208,13 +236,7 @@ public class AutomationTest {
 				}
 				
 			}
-		/*	
-			for(String i:ItermList){
-				
-				System.out.println(i);
-				
-			}
-			*/
+		
 		}
 	  
 	  
